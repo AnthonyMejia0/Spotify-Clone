@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Sidebar from '../components/Sidebar'
+import Center from '../components/Center'
 
 
 export default function Home() {
@@ -12,7 +13,10 @@ export default function Home() {
         {/**<link rel="icon" href="/favicon.ico" />*/}
       </Head>
 
-      <Sidebar />
+      <main className='flex'>
+        <Sidebar />
+        <Center />
+      </main>
     </div>
   )
 }
