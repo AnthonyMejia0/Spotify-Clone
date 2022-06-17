@@ -21,10 +21,9 @@ export default function Home() {
 }
 
 export async function getServerSideProps(context) {
-  const session = await getSession(context);
   return {
     props: {
-      session,
+      session: await getSession(context),
     }, // will be passed to the page component as props
   };
 }
