@@ -20,7 +20,7 @@ function Sidebar() {
   }, [session, spotifyApi]);
 
   return (
-    <div className='text-gray-500 p-5 text-xs lg:text-sm border-r-gray-900 overflow-y-scroll scrollbar-hide h-screen sm:max-w-[12rem] lg:max-w-[15rem] hidden md:inline-flex'>
+    <div className='text-gray-500 p-5 text-xs lg:text-sm border-r-gray-900 border-r overflow-y-scroll scrollbar-hide h-screen sm:min-w-[12rem] lg:min-w-[15rem] hidden md:inline-flex'>
       <div className='space-y-4'>
       <button className='flex items-center space-x-2 hover:text-white'
       onClick={() => signOut()}>
@@ -48,7 +48,7 @@ function Sidebar() {
         </button>
         <button className='flex items-center space-x-2 hover:text-white'>
           <HeartIcon className='h-5 w-5'/>
-          <p className=''>Your Library</p>
+          <p className=''>Liked Songs</p>
         </button>
         <button className='flex items-center space-x-2 hover:text-white'>
           <RssIcon className='h-5 w-5'/>
