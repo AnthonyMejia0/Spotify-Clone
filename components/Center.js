@@ -15,6 +15,7 @@ const colors = [
     "from-yellow-500",
     "from-pink-500",
     "from-purple-500",
+    "from-orange-500"
 ];
 
 function Center() {
@@ -26,7 +27,7 @@ function Center() {
 
     useEffect(() => {
       setColor(shuffle(colors).pop());
-    }, [])
+    }, [playlistId])
 
     useEffect(() => {
       spotifyApi.getPlaylist(playlistId).then((data) => {
@@ -54,7 +55,6 @@ function Center() {
                 <h1 className="text-2xl md:text-3xl xl:text-5xl font-bold">{playlist?.name}</h1>
             </div>
         </section>
-
         <div>
             <Songs />
         </div>
