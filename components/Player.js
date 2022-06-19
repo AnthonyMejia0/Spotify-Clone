@@ -12,7 +12,7 @@ function Player() {
     const spotifyApi = useSpotify();
     const [currentTrackId, setCurrentTrackId] = useRecoilState(currentTrackIdState);
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
-    const [volume, setVolume] = useState(50);
+    const [volume, setVolume] = useState(100);
     const songInfo = useSongInfo();
 
     const fetchCurrentSong = () => {
@@ -41,10 +41,18 @@ function Player() {
         });
     };
 
+    const getArtists = () => {
+        var list = []; 
+        songInfo?.artists?.map((artist) => {
+            list.push(artist.name);
+        });
+        return list.join(", ");
+    }
+
     useEffect(() => {
         if (spotifyApi.getAccessToken() && !currentTrackId) {
             fetchCurrentSong();
-            setVolume(50);
+            setVolume(100);
         }
     }, [currentTrackIdState, spotifyApi, session]);
     
@@ -71,9 +79,9 @@ function Player() {
                     src={songInfo?.album.images?.[0].url} 
                     alt="" 
                 />
-                <div>
-                    <h3>{songInfo?.name}</h3>
-                    <p className="text-gray-500">{songInfo?.artists?.[0]?.name}</p>
+                <div className="overflow-x-hidden">
+                    <h3 className="text-blue-500 truncate">{songInfo?.name}</h3>
+                    <p className="text-gray-500 truncate">{getArtists()}</p>
                 </div>
             </div>
 
@@ -101,9 +109,9 @@ function Player() {
 
             {/* Right */}
             <div className="flex items-center space-x-3 md:space-x-4 justify-end pr-5">
-                <VolumeOffIcon 
-                    onClick={() => volume > 0 && setVolume(volume - 10)}
-                    className="button" 
+                <VolumeUpIcon 
+                    onClick={() => volume < 100 && setVolume(volume + 10)}
+                    className="button hidden md:inline" 
                 />
                 <input
                     className="w-14 md:w-28" 
@@ -111,10 +119,7 @@ function Player() {
                     value={volume} 
                     onChange={e => setVolume(Number(e.target.value))}
                     min={0} 
-                    max={100} />
-                <VolumeUpIcon 
-                    onClick={() => volume < 100 && setVolume(volume + 10)}
-                    className="button" 
+                    max={100} 
                 />
             </div>
         </div>
