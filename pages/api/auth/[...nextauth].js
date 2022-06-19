@@ -12,7 +12,7 @@ async function refreshAccessToken(token) {
 
         return {
             ...token,
-            accessToken: refreshToken.accessToken,
+            accessToken: refreshedToken.access_token,
             accessTokenExpires: Date.now() + refreshedToken.expires_in * 1000,
             refreshToken: refreshedToken.refresh_token ?? token.refreshToken,
         }
@@ -47,7 +47,7 @@ export default NextAuth({
                 ...token,
                 accessToken: account.access_token,
                 refreshToken: account.refresh_token,
-                userName: account.providerAcountId,
+                username: account.providerAccountId,
                 accessTokenExpires: account.expires_at * 1000,
             }
         }
@@ -66,7 +66,7 @@ export default NextAuth({
     async session({ session, token }) {
         session.user.accessToken = token.accessToken;
         session.user.refreshToken = token.refreshToken;
-        session.user.userName = token.userName;
+        session.user.username = token.username;
 
         return session;
     },
