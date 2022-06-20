@@ -108,7 +108,7 @@ function Player() {
     );
 
     return (
-        <div className="h-24 bg-gradient-to-b from-black to-gray-900 text-white grid grid-cols-3 text-xs md:text-base px-2 md:px-8">
+        <div className="h-24 bg-gradient-to-b from-black to-gray-900 text-white grid grid-cols-2 md:grid-cols-3 text-xs md:text-base px-2 md:px-8">
             {/* Left */}
             <div className="flex items-center space-x-4">
                 <img 
@@ -123,14 +123,14 @@ function Player() {
             </div>
 
             {/* Middle */}
-            <div className="flex items-center justify-evenly text-gray-500">
-                <SwitchHorizontalIcon onClick={handleShuffle} className={`button ${isShuffle ? 'text-[#1DB954]' : 'text-gray-500'}`} />
+            <div className="flex items-center justify-around md:justify-evenly text-gray-500">
+                <SwitchHorizontalIcon onClick={handleShuffle} className={`bigButton md:button ${isShuffle ? 'text-[#1DB954]' : 'text-gray-500'}`} />
                 <RewindIcon onClick={() => {
                     spotifyApi.skipToPrevious();
                     setInterval(function() {
                         router.reload();
                     }, 500);
-                }} className="button" />
+                }} className="bigButton md:button" />
                 
                 {isPlaying ? (
                     <PauseIcon
@@ -149,7 +149,7 @@ function Player() {
                     setInterval(function() {
                         router.reload();
                     }, 500);
-                }} className="button" />
+                }} className="bigButton md:button" />
                 <ReplyIcon onClick={handleRepeat} className={`button ${isRepeat ? 'text-[#1DB954]' : 'text-gray-500'}`} />
             </div>
 
@@ -157,7 +157,7 @@ function Player() {
             <div className="hidden md:flex items-center space-x-3 md:space-x-4 justify-end pr-5">
                 <VolumeUpIcon 
                     onClick={() => volume < 100 && setVolume(volume + 10)}
-                    className="button hidden md:inline" 
+                    className="button h-5 w-5 hidden md:inline" 
                 />
                 <input
                     className="w-14 md:w-28" 
