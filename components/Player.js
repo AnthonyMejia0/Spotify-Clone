@@ -1,11 +1,13 @@
 import { SwitchHorizontalIcon, FastForwardIcon, ReplyIcon, RewindIcon, PlayIcon, PauseIcon, VolumeUpIcon, VolumeOffIcon } from "@heroicons/react/solid";
 import { debounce } from "lodash";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
 import useSongInfo from "../hooks/useSongInfo";
 import useSpotify from "../hooks/useSpotify";
+
 
 function Player() {
     const { data: session, status } = useSession();
@@ -13,7 +15,10 @@ function Player() {
     const [currentTrackId, setCurrentTrackId] = useRecoilState(currentTrackIdState);
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
     const [volume, setVolume] = useState(100);
+    const [isShuffle, setIsShuffle] = useState(false);
+    const [isRepeat, setIsRepeat] = useState(false);
     const songInfo = useSongInfo();
+    const router = useRouter();
 
     const fetchCurrentSong = () => {
         if (!songInfo) {
@@ -23,9 +28,29 @@ function Player() {
 
                 spotifyApi.getMyCurrentPlaybackState().then((data) => {
                     setIsPlaying(data.body?.is_playing);
+                    setIsShuffle(data.body?.shuffle_state);
+                    if (data.body?.repeat_state === "off") {
+                        setIsRepeat(false);
+                    }
+                    else {
+                        setIsRepeat(true);
+                    }
                 });
             });
         }
+    };
+
+    const handleShuffle = () => {
+        spotifyApi.getMyCurrentPlaybackState().then((data) => {
+            if (data.body.shuffle_state) {
+                spotifyApi.setShuffle(false);
+                setIsShuffle(false);
+            }
+            else {
+                spotifyApi.setShuffle(true);
+                setIsShuffle(true);
+            }
+        });
     };
 
     const handlePlayPause = () => {
@@ -37,6 +62,19 @@ function Player() {
             else {
                 spotifyApi.play();
                 setIsPlaying(true);
+            }
+        });
+    };
+
+    const handleRepeat = () => {
+        spotifyApi.getMyCurrentPlaybackState().then((data) => {
+            if (data.body.repeat_state === "track" || data.body.repeat_state === "context") {
+                spotifyApi.setRepeat("off");
+                setIsRepeat(false);
+            }
+            else {
+                spotifyApi.setRepeat("context");
+                setIsRepeat(true);
             }
         });
     };
@@ -64,7 +102,6 @@ function Player() {
 
     const debouncedAdjustVolume = useCallback(
         debounce((volume) => {
-
             spotifyApi.setVolume(volume).catch((err) => {});
         }, 500),
         []
@@ -87,8 +124,13 @@ function Player() {
 
             {/* Middle */}
             <div className="flex items-center justify-evenly text-gray-500">
-                <SwitchHorizontalIcon className="button" />
-                <RewindIcon className="button" />
+                <SwitchHorizontalIcon onClick={handleShuffle} className={`button ${isShuffle ? 'text-[#1DB954]' : 'text-gray-500'}`} />
+                <RewindIcon onClick={() => {
+                    spotifyApi.skipToPrevious();
+                    setInterval(function() {
+                        router.reload();
+                    }, 500);
+                }} className="button" />
                 
                 {isPlaying ? (
                     <PauseIcon
@@ -102,13 +144,17 @@ function Player() {
                     />
                 )}
 
-                <FastForwardIcon className="button" />
-                <ReplyIcon className="button" />
-                
+                <FastForwardIcon onClick={() => {
+                    spotifyApi.skipToNext();
+                    setInterval(function() {
+                        router.reload();
+                    }, 500);
+                }} className="button" />
+                <ReplyIcon onClick={handleRepeat} className={`button ${isRepeat ? 'text-[#1DB954]' : 'text-gray-500'}`} />
             </div>
 
             {/* Right */}
-            <div className="flex items-center space-x-3 md:space-x-4 justify-end pr-5">
+            <div className="hidden md:flex items-center space-x-3 md:space-x-4 justify-end pr-5">
                 <VolumeUpIcon 
                     onClick={() => volume < 100 && setVolume(volume + 10)}
                     className="button hidden md:inline" 
