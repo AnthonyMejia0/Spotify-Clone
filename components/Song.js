@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import useSpotify from "../hooks/useSpotify";
 import { millisToMinutesAndSeconds } from "../lib/time";
 import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
@@ -23,7 +22,7 @@ function Song({ order, track }) {
 
         spotifyApi.play({
             uris: [track.track.uri],
-        })
+        });
     }
     
     return (
@@ -35,7 +34,7 @@ function Song({ order, track }) {
                     src={track?.track.album.images[0].url}
                     alt=""
                 />
-                <div className="w-52 md:w-36 lg:w-64 xl:w-4/6 2xl:w-5/6">
+                <div className="w-44 md:w-36 lg:w-64 xl:w-4/6 2xl:w-5/6">
                     <p className="text-white truncate">{track.track.name}</p>
                     <p className="truncate">{getArtists()}</p>
                 </div>
