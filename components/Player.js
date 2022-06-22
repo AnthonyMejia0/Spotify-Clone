@@ -30,7 +30,7 @@ function Player() {
         return new Promise(resolve => setTimeout(resolve, time));
     }
 
-    function add1sec() {
+    function add1() {
         if (isPlaying) {
             setTimer(timer + 1);
         }
@@ -45,7 +45,6 @@ function Player() {
                 spotifyApi.getMyCurrentPlaybackState().then((data) => {
                     setIsPlaying(data.body?.is_playing);
                     setIsShuffle(data.body?.shuffle_state);
-                    //console.log("THIS >>>", data.body?.progress_ms);
                     if (data.body?.repeat_state === "off") {
                         setIsRepeat("off");
                     }
@@ -119,14 +118,14 @@ function Player() {
     }, [currentTrackIdState, spotifyApi, session]);
 
     useEffect(() => {
-        //setTimeout(() => {
+        setTimeout(() => {
             spotifyApi.getMyCurrentPlayingTrack().then((data) => {
                 if (!isDragging) {
                     setSeek(data.body.progress_ms);
-                    add1sec();
+                    add1();
                 }
             }).catch((err) => {err});
-        //}, 1000);
+        }, 1000);
     }, [timer, isPlaying])
     
     useEffect(() => {
@@ -219,7 +218,7 @@ function Player() {
                     )}
                 </div>
                 <div className="flex space-x-2 items-center">
-                <p className="text-white">{millisToMinutesAndSeconds(seek)}</p>
+                    <p className="text-white">{millisToMinutesAndSeconds(seek)}</p>
                     <Slider 
                         aria-label="time-indicator"
                         size="small"
