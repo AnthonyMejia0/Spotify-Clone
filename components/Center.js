@@ -40,7 +40,7 @@ function Center() {
         
   return (
     <div className="flex-grow h-screen overflow-x-hidden overflow-y-scroll scrollbar-hide">
-        <header className="relative top-5 right-[13.5rem] float-right">
+        <header className="relative top-5 right-[14.5rem] float-right">
             <div className="w-[12.5rem] absolute flex items-center bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
                 <img 
                     className="rounded-full w-10 h-10" 
