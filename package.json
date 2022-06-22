@@ -12,7 +12,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
     "@heroicons/react": "^1.0.6",
+    "@mui/icons-material": "^5.8.4",
     "gh-pages": "^4.0.0",
     "lodash": "^4.17.21",
     "next": "12.1.6",
