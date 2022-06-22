@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer components {
+
+    .spotify {
+        @apply text-[#1DB954]
+    }
+
     .button {
         @apply h-6 w-6 cursor-pointer hover:scale-125 transition transform duration-100 ease-out;
     }
