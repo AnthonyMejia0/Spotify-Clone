@@ -1,11 +1,13 @@
-import { ChevronDownIcon } from "@heroicons/react/outline";
+import { ChevronDownIcon, MenuIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react"
 import { useEffect, useState } from "react";
-import { shuffle } from "lodash";
+import { set, shuffle } from "lodash";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { playlistIdState, playlistState } from "../atoms/playlistAtom";
 import useSpotify from "../hooks/useSpotify";
 import Songs from "./Songs";
+import { convertMsToHM } from "../lib/time";
+import usePlaylist from "../hooks/usePlaylist";
 
 const colors = [
     "from-indigo-500",
@@ -23,7 +25,8 @@ function Center() {
     const spotifyApi = useSpotify();
     const [color, setColor] = useState(null);
     const playlistId = useRecoilValue(playlistIdState);
-    const [playlist, setPlaylist] = useRecoilState(playlistState)
+    const [playlist, setPlaylist] = useRecoilState(playlistState);
+    const playlistInfo = usePlaylist();
 
     useEffect(() => {
       setColor(shuffle(colors).pop());
@@ -34,10 +37,10 @@ function Center() {
         setPlaylist(data.body);
       }).catch((err) => console.log("Something went wrong!", err));
     }, [spotifyApi, playlistId]);
-    
+        
   return (
     <div className="flex-grow h-screen overflow-x-hidden overflow-y-scroll scrollbar-hide">
-        <header className="relative top-5 right-[13rem] float-right">
+        <header className="relative top-5 right-[13.5rem] float-right">
             <div className="w-[12.5rem] absolute flex items-center bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
                 <img 
                     className="rounded-full w-10 h-10" 
@@ -53,6 +56,7 @@ function Center() {
             <div>
                 <p>PLAYLIST</p>
                 <h1 className="text-2xl md:text-3xl xl:text-5xl font-bold">{playlist?.name}</h1>
+                <p>{`${playlistInfo.owner} • ${playlistInfo.songs} songs, ${convertMsToHM(playlistInfo.playtime)}`}</p>
             </div>
         </section>
         <div>
