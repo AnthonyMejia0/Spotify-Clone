@@ -20,6 +20,10 @@ function Player() {
     const songInfo = useSongInfo();
     const router = useRouter();
 
+    function delay(time) {
+        return new Promise(resolve => setTimeout(resolve, time));
+    }
+
     const fetchCurrentSong = () => {
         if (!songInfo) {
             spotifyApi.getMyCurrentPlayingTrack().then((data) => {
@@ -125,12 +129,17 @@ function Player() {
             {/* Middle */}
             <div className="flex items-center justify-around md:justify-evenly text-gray-500">
                 <SwitchHorizontalIcon onClick={handleShuffle} className={`bigButton md:button ${isShuffle ? 'text-[#1DB954]' : 'text-gray-500'}`} />
-                <RewindIcon onClick={() => {
-                    spotifyApi.skipToPrevious();
-                    setInterval(function() {
-                        router.reload();
-                    }, 500);
-                }} className="bigButton md:button" />
+                <RewindIcon 
+                    onClick={() => {
+                        spotifyApi.skipToPrevious();
+                        delay(3000).then(() => {
+                            let nextTrack = spotifyApi.getMyCurrentPlayingTrack();
+                            nextTrack.then((data) => {
+                                setCurrentTrackId(data?.body?.item.id);
+                            });
+                        });
+                    }} 
+                    className="bigButton md:button" />
                 
                 {isPlaying ? (
                     <PauseIcon
@@ -146,9 +155,12 @@ function Player() {
 
                 <FastForwardIcon onClick={() => {
                     spotifyApi.skipToNext();
-                    setInterval(function() {
-                        router.reload();
-                    }, 500);
+                    delay(3000).then(() => {
+                        let nextTrack = spotifyApi.getMyCurrentPlayingTrack();
+                        nextTrack.then((data) => {
+                            setCurrentTrackId(data?.body?.item.id);
+                        });
+                    });
                 }} className="bigButton md:button" />
                 <ReplyIcon onClick={handleRepeat} className={`button ${isRepeat ? 'text-[#1DB954]' : 'text-gray-500'}`} />
             </div>
