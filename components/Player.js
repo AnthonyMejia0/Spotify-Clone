@@ -151,7 +151,7 @@ function Player() {
     );
 
     return (
-        <div className="h-24 bg-gradient-to-b from-black to-gray-900 text-white grid grid-cols-2 md:grid-cols-3 text-xs md:text-base px-2 md:px-8">
+        <div className="absolute bottom-[4.5rem] md:bottom-0 h-24 w-full bg-gradient-to-b from-black to-gray-900 text-white grid grid-cols-2 md:grid-cols-3 text-xs md:text-base px-2 md:px-8">
             {/* Left */}
             <div className="flex items-center space-x-4">
                 <img 
