@@ -15,4 +15,8 @@
     .bigButton {
         @apply h-9 w-9 cursor-pointer hover:scale-125 transition transform duration-100 ease-out;
     }
+
+    .mobile-menu {
+        @apply cursor-pointer rounded-full px-8 py-5 hover:bg-gray-500;
+    }
 }
