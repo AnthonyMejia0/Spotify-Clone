@@ -151,7 +151,7 @@ function Player() {
     );
 
     return (
-        <div className="absolute bottom-[4.5rem] md:bottom-0 h-24 w-full bg-gradient-to-b from-black to-gray-900 text-white grid grid-cols-2 md:grid-cols-3 text-xs md:text-base px-2 md:px-8">
+        <div className="absolute bottom-[4.5rem] md:bottom-0 h-24 w-full bg-gray-900 md:bg-gradient-to-t md:from-black md:to-gray-900 text-white grid grid-cols-2 md:grid-cols-3 text-xs md:text-base px-2 md:px-8">
             {/* Left */}
             <div className="flex items-center space-x-4">
                 <img 
@@ -218,8 +218,8 @@ function Player() {
                     )}
                 </div>
                 <div className="flex space-x-2 items-center">
-                    <div className="w-[3.7rem] pl-1 overflow-hidden bg-green-400">
-                        <p className="text-white">{millisToMinutesAndSeconds(seek)}</p>
+                    <div className="flex justify-end w-[3.7rem] overflow-hidden">
+                        <p className="text-white px-1">{millisToMinutesAndSeconds(seek)}</p>
                     </div>
                     <Slider 
                         aria-label="time-indicator"
@@ -259,8 +259,8 @@ function Player() {
                             },
                           }}
                     />
-                    <div className="w-[3.7rem] pl-1 overflow-hidden bg-green-400">
-                        <p className="text-white">{millisToMinutesAndSeconds(songInfo?.duration_ms)}</p>
+                    <div className="flex justify-start w-[3.7rem] overflow-hidden">
+                        <p className="text-white px-1">{millisToMinutesAndSeconds(songInfo?.duration_ms)}</p>
                     </div>
                 </div>
             </div>
