@@ -218,7 +218,9 @@ function Player() {
                     )}
                 </div>
                 <div className="flex space-x-2 items-center">
-                    <p className="text-white">{millisToMinutesAndSeconds(seek)}</p>
+                    <div className="w-[3.7rem] pl-1 overflow-hidden bg-green-400">
+                        <p className="text-white">{millisToMinutesAndSeconds(seek)}</p>
+                    </div>
                     <Slider 
                         aria-label="time-indicator"
                         size="small"
@@ -257,7 +259,9 @@ function Player() {
                             },
                           }}
                     />
-                    <p className="text-white">{millisToMinutesAndSeconds(songInfo?.duration_ms)}</p>
+                    <div className="w-[3.7rem] pl-1 overflow-hidden bg-green-400">
+                        <p className="text-white">{millisToMinutesAndSeconds(songInfo?.duration_ms)}</p>
+                    </div>
                 </div>
             </div>
 
