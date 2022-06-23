@@ -2,7 +2,7 @@ import { SwitchHorizontalIcon, FastForwardIcon, ReplyIcon, RewindIcon, PlayIcon,
 import RepeatIcon from '@mui/icons-material/Repeat';
 import RepeatOneIcon from '@mui/icons-material/RepeatOne';
 import Slider from '@mui/material/Slider';
-import { debounce, max } from "lodash";
+import { debounce, max, set } from "lodash";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
@@ -39,7 +39,6 @@ function Player() {
     const fetchCurrentSong = () => {
         if (!songInfo) {
             spotifyApi.getMyCurrentPlayingTrack().then((data) => {
-                console.log("Now Playing: ", data.body?.item);
                 setCurrentTrackId(data.body?.item?.id);
 
                 spotifyApi.getMyCurrentPlaybackState().then((data) => {
@@ -123,6 +122,9 @@ function Player() {
                 if (!isDragging) {
                     setSeek(data.body.progress_ms);
                     add1();
+                    if (data.body.item.name && data.body.item.name != songInfo.name) {
+                        setCurrentTrackId(data?.body?.item.id);
+                    }
                 }
             }).catch((err) => {err});
         }, 1000);
@@ -154,7 +156,7 @@ function Player() {
             <div className="flex items-center space-x-4">
                 <img 
                     className="hidden md:inline h-10 w-10"
-                    src={songInfo?.album.images?.[0].url} 
+                    src={songInfo?.album?.images?.[0].url} 
                     alt="" 
                 />
                 <div className="overflow-x-hidden">
@@ -170,7 +172,6 @@ function Player() {
                     <RewindIcon 
                         onClick={() => {
                             spotifyApi.skipToPrevious();
-                            setSeek(2500);
                             delay(2500).then(() => {
                                 let nextTrack = spotifyApi.getMyCurrentPlayingTrack();
                                 nextTrack.then((data) => {
@@ -196,7 +197,6 @@ function Player() {
                     <FastForwardIcon 
                         onClick={() => {
                             spotifyApi.skipToNext();
-                            setSeek(2500);
                             delay(2500).then(() => {
                                 let nextTrack = spotifyApi.getMyCurrentPlayingTrack();
                                 nextTrack.then((data) => {
