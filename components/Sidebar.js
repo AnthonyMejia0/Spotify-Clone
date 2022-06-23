@@ -70,7 +70,7 @@ function Sidebar() {
           ))}
         </div>
       </div>
-      <div className='flex items-center justify-around absolute bottom-0 h-[4.5rem] w-full p-1 overflow-hidden bg-black opacity-[0.98] md:hidden'>
+      <div className='flex items-center justify-around fixed bottom-0 h-[4.5rem] w-full px-1 overflow-hidden bg-black opacity-[0.90] md:hidden'>
         <button className='mobile-menu'>
           <div className='flex flex-col items-center'>
             <HomeIcon className='h-8 w-10 text-white' />
