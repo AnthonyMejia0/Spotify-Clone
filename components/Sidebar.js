@@ -22,7 +22,7 @@ function Sidebar() {
 
   return (
     <div>
-      <div className='text-gray-500 p-5 text-xs lg:text-sm border-r-gray-900 border-r overflow-y-scroll scrollbar-hide h-[calc(100vh-6rem)] sm:min-w-[12rem] lg:min-w-[15rem] hidden md:inline-flex pb-36'>
+      <div className='text-gray-500 p-5 text-xs lg:text-sm border-r-gray-900 border-r overflow-y-scroll scrollbar-hide h-full sm:min-w-[12rem] lg:min-w-[15rem] hidden md:inline-flex pb-36'>
         <div className='space-y-4'>
           <button className='flex items-center space-x-2 hover:text-white'
           onClick={() => signOut()}>
@@ -70,7 +70,7 @@ function Sidebar() {
           ))}
         </div>
       </div>
-      <div className='flex items-center justify-around absolute bottom-0 h-[4.5rem] w-full p-1 overflow-hidden bg-black opacity-90 md:hidden'>
+      <div className='flex items-center justify-around absolute bottom-0 h-[4.5rem] w-full p-1 overflow-hidden bg-black opacity-[0.98] md:hidden'>
         <button className='mobile-menu'>
           <div className='flex flex-col items-center'>
             <HomeIcon className='h-8 w-10 text-white' />
