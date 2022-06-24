@@ -3,6 +3,7 @@ import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import { signOut, useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
+import { pageState } from '../atoms/pageAtom';
 import { playlistIdState } from '../atoms/playlistAtom';
 import useSpotify from "../hooks/useSpotify";
 
@@ -11,6 +12,7 @@ function Sidebar() {
   const spotifyApi = useSpotify();
   const [playlists, setPlaylists] = useState([]);
   const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
+  const [pageName, setPageName] = useRecoilState(pageState);
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
@@ -22,22 +24,31 @@ function Sidebar() {
 
   return (
     <div>
-      <div className='text-gray-500 p-5 text-xs lg:text-sm border-r-gray-900 border-r overflow-y-scroll scrollbar-hide h-full sm:min-w-[12rem] lg:min-w-[15rem] hidden md:inline-flex pb-36'>
-        <div className='space-y-4'>
+      <div className='text-gray-500 p-5 text-xs lg:text-sm border-r-gray-900 border-r h-screen w-[12rem] lg:w-[15rem] hidden md:inline-flex'>
+        <div className='space-y-4 overflow-y-scroll scrollbar-hide pb-24'>
           <button className='flex items-center space-x-2 hover:text-white'
           onClick={() => signOut()}>
             <LogoutIcon className='h-5 w-5'/>
             <p className=''>Log Out</p>
           </button>
-          <button className='flex items-center space-x-2 hover:text-white'>
+          <button
+            onClick={() => setPageName("Home")}
+            className='flex items-center space-x-2 hover:text-white'
+          >
             <HomeIcon className='h-5 w-5'/>
             <p className=''>Home</p>
           </button>
-          <button className='flex items-center space-x-2 hover:text-white'>
+          <button 
+            onClick={() => setPageName("Search")}
+            className='flex items-center space-x-2 hover:text-white'
+          >
             <SearchIcon className='h-5 w-5'/>
             <p className=''>Search</p>
           </button>
-          <button className='flex items-center space-x-2 hover:text-white'>
+          <button
+            onClick={() => setPageName("Library")} 
+            className='flex items-center space-x-2 hover:text-white'
+          >
             <LibraryIcon className='h-5 w-5'/>
             <p className=''>Your Library</p>
           </button>
@@ -62,7 +73,10 @@ function Sidebar() {
           {playlists.map((playlist) => (
             <p
               key={playlist.id} 
-              onClick={() => setPlaylistId(playlist.id)}
+              onClick={() => {
+                setPlaylistId(playlist.id);
+                setPageName("Center");
+              }}
               className='cursor-pointer hover:text-white'
             >
               {playlist.name}
@@ -71,19 +85,28 @@ function Sidebar() {
         </div>
       </div>
       <div className='flex items-center justify-around fixed bottom-0 h-[4.5rem] w-full px-1 overflow-hidden bg-black opacity-[0.90] md:hidden'>
-        <button className='mobile-menu'>
+        <button
+          onClick={() => setPageName("Home")} 
+          className='mobile-menu'
+        >
           <div className='flex flex-col items-center'>
             <HomeIcon className='h-8 w-10 text-white' />
             <p className='text-white'>Home</p>
           </div>
         </button>
-        <button className='mobile-menu'>   
+        <button 
+          onClick={() => setPageName("Search")}
+          className='mobile-menu'
+        >   
           <div className='flex flex-col items-center'>
             <SearchIcon className='h-8 w-10 text-white' />
             <p className='text-white'>Search</p>
           </div>
         </button>
-        <button className='mobile-menu'>
+        <button
+          onClick={() => setPageName("Library")}  
+          className='mobile-menu'
+        >
           <div className='flex flex-col items-center'>
             <LibraryMusicIcon className='h-8 w-10 text-white' />
             <p className='text-white'>Library</p>
