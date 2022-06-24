@@ -1,11 +1,18 @@
-import Head from 'next/head'
-import Sidebar from '../components/Sidebar'
-import Center from '../components/Center'
+import Head from 'next/head';
+import Sidebar from '../components/Sidebar';
+import HomePage from '../components/HomePage';
+import Search from '../components/Search';
+import Library from '../components/Library';
+import Center from '../components/Center';
 import { getSession } from 'next-auth/react'
 import Player from '../components/Player';
-
+import { useRecoilValue } from 'recoil';
+import { pageState } from '../atoms/pageAtom';
 
 export default function Home() {
+  const pageName = useRecoilValue(pageState);
+  console.log(pageName);
+
   return (
     <div className='bg-black h-screen overflow-hidden'>
       <Head>
@@ -15,10 +22,16 @@ export default function Home() {
 
       <main className='flex'>
         <Sidebar />
-        <Center />
+        {
+          pageName === "Home" ? <HomePage /> :
+          pageName === "Center" ? <Center /> : 
+          pageName === "Search" ? <Search /> :
+          pageName === "Library" ? <Library /> :
+          <h1 className='text-white'>This is not an existing page</h1>
+        }
       </main>
 
-      <div className='sticky bottom-0'>
+      <div className=''>
         <Player />
       </div>
     </div>
