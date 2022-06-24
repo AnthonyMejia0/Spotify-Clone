@@ -219,7 +219,7 @@ function Player() {
                 </div>
                 <div className="flex space-x-2 items-center">
                     <div className="flex justify-end w-[3.7rem] overflow-hidden">
-                        <p className="text-white px-1">{millisToMinutesAndSeconds(seek)}</p>
+                        <p className="text-white">{millisToMinutesAndSeconds(seek)}</p>
                     </div>
                     <Slider 
                         aria-label="time-indicator"
@@ -260,7 +260,7 @@ function Player() {
                           }}
                     />
                     <div className="flex justify-start w-[3.7rem] overflow-hidden">
-                        <p className="text-white px-1">{millisToMinutesAndSeconds(songInfo?.duration_ms)}</p>
+                        <p className="text-white">{millisToMinutesAndSeconds(songInfo?.duration_ms)}</p>
                     </div>
                 </div>
             </div>
