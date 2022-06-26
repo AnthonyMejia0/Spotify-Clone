@@ -8,6 +8,7 @@ import { getSession } from 'next-auth/react'
 import Player from '../components/Player';
 import { useRecoilValue } from 'recoil';
 import { pageState } from '../atoms/pageAtom';
+import AlbumCenter from '../components/AlbumCenter';
 
 export default function Home() {
   const pageName = useRecoilValue(pageState);
@@ -25,6 +26,7 @@ export default function Home() {
         {
           pageName === "Home" ? <HomePage /> :
           pageName === "Center" ? <Center /> : 
+          pageName === "Album Center" ? <AlbumCenter /> :
           pageName === "Search" ? <Search /> :
           pageName === "Library" ? <Library /> :
           <h1 className='text-white'>This is not an existing page</h1>
