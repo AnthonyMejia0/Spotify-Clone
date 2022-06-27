@@ -21,9 +21,9 @@ function Songs() {
 
       <hr className='border-t-[0.1px] border-gray-900'/>
 
-      {playlist?.tracks?.items.map((track, i) => (
+      {playlist?.tracks?.items?.map((track, i) => (
         <Song 
-          key={track.track.id}
+          key={i}
           order={i}
           track={track}
         />

@@ -14,8 +14,10 @@ function usePlaylist() {
             let runtime = 0;
             setOwner(playlist?.owner?.display_name);
             playlist?.tracks?.items?.map((track) => {
-                songCount += 1;
-                runtime += track.track.duration_ms;
+                if (track) {
+                    songCount += 1;
+                    runtime += track?.track?.duration_ms;
+                }
             });
             setNumSongs(songCount);
             setPlaytime(runtime);

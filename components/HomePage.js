@@ -1,12 +1,7 @@
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { pageState } from "../atoms/pageAtom";
-import { playlistIdState, playlistState } from "../atoms/playlistAtom";
-import usePlaylist from "../hooks/usePlaylist";
 import useSpotify from "../hooks/useSpotify";
-import { convertMsToHM } from "../lib/time";
 import AlbumCover from "./AlbumCover";
 import PlaylistCover from "./PlaylistCover";
 
@@ -48,8 +43,8 @@ function HomePage() {
                     key={i}
                     image={playlist?.images?.[0].url}
                     title={playlist?.name}
-                    owner={playlist?.owner.display_name}
-                    songs={playlist?.tracks.total}
+                    owner={playlist?.owner?.display_name}
+                    songs={playlist?.tracks?.total}
                     id={playlist?.id}
                   />
                 ))}
