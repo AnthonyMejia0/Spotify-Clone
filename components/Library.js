@@ -34,7 +34,7 @@ function Library() {
             <ChevronDownIcon className="text-white h-5 w-5"/>
         </div>
       </header>
-      <section className="p-8 pt-20 pb-12">
+      <section className="p-8 pt-20 pb-20">
         <h1 className="text-white font-bold text-[2rem] mb-5">Your Library</h1>
         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-8 gap-x-4">
           {playlists.map((playlist, i) => (

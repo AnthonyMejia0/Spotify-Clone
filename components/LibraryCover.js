@@ -12,9 +12,9 @@ function LibraryCover({ image, title, owner, songs, id, }) {
           setPlaylistId(id);
           setPageName("Center");
         }}
-        className="max-w-[11rem] md:max-w-[13rem] bg-[#181818] hover:bg-zinc-800 p-4 rounded-md text-sm cursor-pointer"
+        className="max-w-[10rem] md:max-w-[13rem] bg-[#181818] hover:bg-zinc-800 p-4 rounded-md text-sm cursor-pointer"
       >
-        <img className="h-36 min-w-[9rem] md:h-44 md:min-w-[11rem] mb-2 shadow-2xl shadow-black" src={image} alt={`${title}`} />
+        <img className="h-32 min-w-[8rem] md:h-44 md:min-w-[11rem] mb-2 shadow-2xl shadow-black" src={image} alt={`${title}`} />
         <p className="font-bold truncate">{title}</p>
         <p>{`By ${owner}`}</p>
       </div>
