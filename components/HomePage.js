@@ -22,7 +22,7 @@ function HomePage() {
   }, [session])
 
   return (
-    <div className="flex-grow h-screen overflow-x-hidden overflow-y-scroll scrollbar-hide pb-[14.5rem] md:pb-[10rem]">
+    <div className="flex-grow h-[calc(100vh-10.5rem)] md:h-[calc(100vh-4.5rem)] overflow-x-hidden overflow-y-scroll scrollbar-hide">
       <header className="relative top-5 right-[13.5rem] float-right">
             <div className="w-[12.5rem] absolute flex items-center bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
                 <img 
@@ -51,7 +51,7 @@ function HomePage() {
             </div>
           </div>
 
-          <div>
+          <div className="pb-8">
             <h1 className="text-white font-bold text-[2rem] mb-5">New Releases</h1>
             <div className="flex overflow-x-scroll scrollbar-hide space-x-4 after:mr-8">
                 {newReleases.map((album, i) => (
