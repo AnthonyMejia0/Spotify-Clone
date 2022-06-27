@@ -15,7 +15,7 @@ export default function Home() {
   console.log(pageName);
 
   return (
-    <div className='bg-black h-screen overflow-hidden'>
+    <div className='relative bg-black h-[calc(100%-40px)] overflow-hidden'>
       <Head>
         <title>Spotify 2.0</title>
         {/**<link rel="icon" href="/favicon.ico" />*/}
