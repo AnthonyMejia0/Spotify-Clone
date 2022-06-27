@@ -51,7 +51,7 @@ function HomePage() {
             </div>
           </div>
 
-          <div className="pb-8">
+          <div className="pb-20">
             <h1 className="text-white font-bold text-[2rem] mb-5">New Releases</h1>
             <div className="flex overflow-x-scroll scrollbar-hide space-x-4 after:mr-8">
                 {newReleases.map((album, i) => (
