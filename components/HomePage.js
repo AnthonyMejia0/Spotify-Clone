@@ -22,7 +22,7 @@ function HomePage() {
   }, [session])
 
   return (
-    <div className="flex-grow h-[calc(100vh-10.5rem)] md:h-[calc(100vh-4.5rem)] overflow-x-hidden overflow-y-scroll scrollbar-hide">
+    <div className="flex-grow h-screen overflow-x-hidden overflow-y-scroll scrollbar-hide pb-[10.5rem] md:pb-[6rem]">
       <header className="relative top-5 right-[13.5rem] float-right">
             <div className="w-[12.5rem] absolute flex items-center bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
                 <img 
