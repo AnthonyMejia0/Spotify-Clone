@@ -151,7 +151,7 @@ function Player() {
     );
 
     return (
-        <div className="fixed bottom-[4.5rem] md:bottom-0 h-24 w-full bg-gray-900 md:bg-gradient-to-t md:from-black md:to-gray-900 text-white grid grid-cols-2 md:grid-cols-3 text-base px-2 md:px-8">
+        <div className="fixed bottom-[4.5rem] md:bottom-0 h-[5.5rem] md:h-24 w-[99%] md:w-full bg-gray-900 rounded-2xl md:rounded-none md:bg-gradient-to-t md:from-black md:to-gray-900 text-white grid grid-cols-2 md:grid-cols-3 text-base px-2 md:px-8 mx-[0.5%] md:mx-0">
             {/* Left */}
             <div className="flex items-center space-x-4">
                 <img 
@@ -208,12 +208,12 @@ function Player() {
                     />
 
                     {isRepeat === "off" ? (
-                        <RepeatIcon onClick={handleRepeat} className="button text-gray-500"/>
+                        <RepeatIcon onClick={handleRepeat} className="bigButton md:button text-gray-500"/>
                     ) : (
                         isRepeat === "context" ? (
-                            <RepeatIcon onClick={handleRepeat} className="button text-[#1DB954]" />
+                            <RepeatIcon onClick={handleRepeat} className="bigButton md:button text-[#1DB954]" />
                         ) : (
-                            <RepeatOneIcon onClick={handleRepeat} className="button text-[#1DB954]" />
+                            <RepeatOneIcon onClick={handleRepeat} className="bigButton md:button text-[#1DB954]" />
                         )
                     )}
                 </div>
