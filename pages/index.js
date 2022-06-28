@@ -15,7 +15,7 @@ export default function Home() {
   console.log(pageName);
 
   return (
-    <div className='relative bg-black h-[calc(100%-40px)] overflow-hidden'>
+    <div className='relative bg-black h-[calc(100%)] overflow-hidden'>
       <Head>
         <title>Spotify 2.0</title>
         {/**<link rel="icon" href="/favicon.ico" />*/}
@@ -29,13 +29,11 @@ export default function Home() {
           pageName === "Album Center" ? <AlbumCenter /> :
           pageName === "Search" ? <Search /> :
           pageName === "Library" ? <Library /> :
-          <h1 className='text-white'>This is not an existing page</h1>
+          <HomePage />
         }
       </main>
 
-      <div className=''>
         <Player />
-      </div>
     </div>
   );
 }
