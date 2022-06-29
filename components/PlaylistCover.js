@@ -12,12 +12,11 @@ function PlaylistCover({ image, title, owner, songs, id, }) {
           setPlaylistId(id);
           setPageName("Center");
         }}
-        className="max-w-[8rem] md:max-w-[10rem] bg-[#181818] hover:bg-zinc-800 p-4 rounded-md text-sm cursor-pointer"
+        className="max-w-[12rem] md:max-w-[13rem] p-4 rounded-md cursor-pointer hover:bg-slate-800"
       >
-        <img className="h-24 min-w-[6rem] md:h-32 md:min-w-[8rem] mb-2 shadow-2xl shadow-black" src={image} alt="" />
-        <p className="font-bold truncate">{title}</p>
-        <p>{owner}</p>
-        <p>{songs > 1 ? `${songs} Songs` : `${songs} Song`}</p>
+        <img className="h-40 min-w-[10rem] md:h-44 md:min-w-[11rem] mb-2" src={image} alt="" />
+        <p className="text-md font-bold truncate text-center">{title}</p>
+        <p className="text-sm text-center truncate">{owner}</p>
       </div>
   )
 }
