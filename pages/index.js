@@ -12,7 +12,6 @@ import AlbumCenter from '../components/AlbumCenter';
 
 export default function Home() {
   const pageName = useRecoilValue(pageState);
-  console.log(pageName);
 
   return (
     <div className='relative bg-black h-[calc(100%)] overflow-hidden'>
@@ -33,7 +32,7 @@ export default function Home() {
         }
       </main>
 
-        <Player />
+      <Player />
     </div>
   );
 }
