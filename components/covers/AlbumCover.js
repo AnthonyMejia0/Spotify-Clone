@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil"
-import { pageState } from "../atoms/pageAtom";
-import { albumIdState } from "../atoms/albumAtom";
+import { pageState } from "../../atoms/pageAtom";
+import { albumIdState } from "../../atoms/albumAtom";
 
 function AlbumCover({ image, title, owner, songs, id }) {
   const [albumId, setAlbumId] = useRecoilState(albumIdState);

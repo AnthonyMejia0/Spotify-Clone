@@ -1,10 +1,9 @@
-import { ChevronDownIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import useSpotify from "../hooks/useSpotify";
-import AlbumCover from "./AlbumCover";
-import PlaylistCover from "./PlaylistCover";
 import Profile from "./Profile";
+import PlaylistCover from "./covers/PlaylistCover";
+import AlbumCover from "./covers/AlbumCover";
 
 function HomePage() {
   const { data: session } = useSession();
@@ -43,7 +42,7 @@ function HomePage() {
             ))}
           </div>
         </div>
-        <div className="pb-20">
+        <div className="mb-8">
           <h1 className="text-white font-bold text-[2rem] mb-5">New Releases</h1>
           <div className="flex overflow-x-scroll scrollbar-hide space-x-1 md:space-x-4 after:mr-8">
             {newReleases.map((album, i) => (

@@ -1,10 +1,9 @@
-import { ChevronDownIcon, MenuIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react"
 import { useEffect, useState } from "react";
 import { shuffle } from "lodash";
 import { useRecoilState, useRecoilValue } from "recoil";
 import useSpotify from "../hooks/useSpotify";
-import { convertMsToHM, millisToMinutesAndSeconds, millisToMinutesAndSecondsFormatted } from "../lib/time";
+import { convertMsToHM, millisToMinutesAndSecondsFormatted } from "../lib/time";
 import { albumIdState, albumState } from "../atoms/albumAtom";
 import useAlbum from "../hooks/useAlbum";
 import AlbumSongs from "./AlbumSongs";
@@ -22,7 +21,6 @@ const colors = [
 ];
 
 function AlbumCenter() {
-    const { data: session } = useSession();
     const spotifyApi = useSpotify();
     const albumId = useRecoilValue(albumIdState);
     const albumInfo = useAlbum();
@@ -36,7 +34,6 @@ function AlbumCenter() {
     useEffect(() => {
         if (spotifyApi) {
             spotifyApi.getAlbum(albumId).then((data) => {
-                console.log("DATA >>>", data.body);
                 setAlbum(data.body);
             }).catch((err) => console.log("Something went wrong!", err));
         }

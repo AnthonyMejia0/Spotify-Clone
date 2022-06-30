@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil"
-import { pageState } from "../atoms/pageAtom";
-import { playlistIdState } from "../atoms/playlistAtom"
+import { pageState } from "../../atoms/pageAtom";
+import { playlistIdState } from "../../atoms/playlistAtom"
 
 function LibraryCover({ image, title, owner, songs, id, }) {
   const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);

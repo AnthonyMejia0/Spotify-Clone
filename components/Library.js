@@ -1,18 +1,15 @@
-import { ChevronDownIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { pageState } from "../atoms/pageAtom";
-import { playlistIdState } from "../atoms/playlistAtom";
 import useSpotify from "../hooks/useSpotify";
-import LibraryCover from "./LibraryCover";
+import LibraryCover from "./covers/LibraryCover";
 import Profile from "./Profile";
 
 function Library() {
   const {data: session} = useSession();
   const spotifyApi = useSpotify();
   const [playlists, setPlaylists] = useState([]);
-  const [pageName, setPageName] = useRecoilState(pageState);
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
