@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Sidebar from '../components/Sidebar';
 import HomePage from '../components/HomePage';
-import Search from '../components/Search';
+import Search from '../components/search/Search';
 import Library from '../components/Library';
 import Center from '../components/Center';
 import { getSession } from 'next-auth/react'
