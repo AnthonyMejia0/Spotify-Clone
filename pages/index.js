@@ -9,6 +9,7 @@ import Player from '../components/Player';
 import { useRecoilValue } from 'recoil';
 import { pageState } from '../atoms/pageAtom';
 import AlbumCenter from '../components/AlbumCenter';
+import ArtistCenter from '../components/ArtistCenter';
 
 export default function Home() {
   const pageName = useRecoilValue(pageState);
@@ -28,6 +29,7 @@ export default function Home() {
           pageName === "Album Center" ? <AlbumCenter /> :
           pageName === "Search" ? <Search /> :
           pageName === "Library" ? <Library /> :
+          pageName === "Artist Center" ? <ArtistCenter /> : 
           <HomePage />
         }
       </main>
