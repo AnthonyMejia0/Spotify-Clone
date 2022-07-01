@@ -3,6 +3,7 @@ import useSpotify from "../hooks/useSpotify";
 import { millisToMinutesAndSeconds } from "../lib/time";
 import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
 import { albumState } from "../atoms/albumAtom";
+import ExplicitIcon from '@mui/icons-material/Explicit';
 
 function AlbumSong({ order, track }) {
     const spotifyApi = useSpotify();
@@ -33,7 +34,14 @@ function AlbumSong({ order, track }) {
                 <p>{order + 1}</p>
                 <div className="w-44 md:w-36 lg:w-64 xl:w-4/6 2xl:w-5/6">
                     <p className="text-white truncate">{track.name}</p>
-                    <p className="truncate">{getArtists()}</p>
+                    {
+                    track?.explicit ? 
+                        <div className="flex items-center space-x-1">
+                            <ExplicitIcon className="h-5 w-5 text-gray-500" />
+                            <p className="truncate">{getArtists()}</p>
+                        </div> :
+                        <p className="truncate">{getArtists()}</p>
+                    }
                 </div>
             </div>
 
