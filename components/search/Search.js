@@ -14,7 +14,6 @@ function Search() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("It Worked! >>", search);
 
     spotifyApi.searchTracks(search, { limit: 10 }).then((data) => {
       setSongs(data.body.tracks.items);
@@ -84,6 +83,7 @@ function Search() {
             {songs.map((song, i) => (
               <SongCover 
                 key={i}
+                order={i+1}
                 track={song}
               />
             ))}
