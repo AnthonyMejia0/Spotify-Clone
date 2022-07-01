@@ -58,7 +58,7 @@ function ArtistCenter() {
                 </div>
             </div>
 
-            <div className="mb-8 px-8">
+            <div className="mb-8 pl-8">
                 <h1 className="text-white font-bold text-[2rem] mb-5">Albums</h1>
                 <div className="flex overflow-x-scroll scrollbar-hide space-x-1 md:space-x-4 after:mr-8">
                     {albums.map((album, i) => (
@@ -74,7 +74,7 @@ function ArtistCenter() {
                 </div>
             </div>
 
-            <div className="mb-8 px-8">
+            <div className="mb-8 pl-8">
                 <h1 className="text-white font-bold text-[2rem] mb-5">Playlists</h1>
                 <div className="flex overflow-x-scroll scrollbar-hide space-x-1 md:space-x-4 after:mr-8">
                     {playlists.map((playlist, i) => (
@@ -90,7 +90,7 @@ function ArtistCenter() {
                 </div>
             </div>
 
-            <div className="mb-8 px-8">
+            <div className="mb-8 pl-8">
                 <h1 className="text-white font-bold text-[2rem] mb-5">Fans also like</h1>
                 <div className="flex overflow-x-scroll scrollbar-hide space-x-1 md:space-x-4 after:mr-8">
                     {related?.map((artist, i) => (
