@@ -60,7 +60,7 @@ function ArtistCenter() {
 
             <div className="mb-8 pl-8">
                 <h1 className="text-white font-bold text-[2rem] mb-5">Albums</h1>
-                <div className="flex overflow-x-scroll scrollbar-hide space-x-1 md:space-x-4 after:mr-8">
+                <div className="flex overflow-x-scroll scrollbar-hide md:scrollbar-default space-x-1 md:space-x-4 after:mr-8">
                     {albums.map((album, i) => (
                     <AlbumCover 
                         key={i}
@@ -76,7 +76,7 @@ function ArtistCenter() {
 
             <div className="mb-8 pl-8">
                 <h1 className="text-white font-bold text-[2rem] mb-5">Playlists</h1>
-                <div className="flex overflow-x-scroll scrollbar-hide space-x-1 md:space-x-4 after:mr-8">
+                <div className="flex overflow-x-scroll scrollbar-hide md:scrollbar-default space-x-1 md:space-x-4 after:mr-8">
                     {playlists.map((playlist, i) => (
                     <PlaylistCover 
                         key={i}
@@ -92,7 +92,7 @@ function ArtistCenter() {
 
             <div className="mb-8 pl-8">
                 <h1 className="text-white font-bold text-[2rem] mb-5">Fans also like</h1>
-                <div className="flex overflow-x-scroll scrollbar-hide space-x-1 md:space-x-4 after:mr-8">
+                <div className="flex overflow-x-scroll scrollbar-hide md:scrollbar-default space-x-1 md:space-x-4 after:mr-8">
                     {related?.map((artist, i) => (
                         <Artist 
                         key={i}

@@ -49,7 +49,7 @@ function Search() {
       <section className="bg-black text-white pt-20 pl-8">
         <div className="mb-8">
           <h1 className="text-white font-bold text-[2rem] mb-5">Artists</h1>
-          <div className="flex overflow-x-scroll scrollbar-hide space-x-1 md:space-x-4 after:mr-8">
+          <div className="flex overflow-x-scroll scrollbar-hide md:scrollbar-default space-x-1 md:space-x-4 after:mr-8">
             {artists?.map((artist, i) => (
                 <Artist 
                   key={i}
@@ -63,7 +63,7 @@ function Search() {
 
         <div className="mb-8">
           <h1 className="text-white font-bold text-[2rem] mb-5">Playlists</h1>
-          <div className="flex overflow-x-scroll scrollbar-hide space-x-1 md:space-x-4 after:mr-8">
+          <div className="flex overflow-x-scroll scrollbar-hide md:scrollbar-default space-x-1 md:space-x-4 after:mr-8">
             {playlists.map((playlist, i) => (
               <PlaylistCover 
                 key={i}

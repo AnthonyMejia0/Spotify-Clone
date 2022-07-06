@@ -29,7 +29,7 @@ function HomePage() {
       <section className="overflow-x-hidden bg-black text-white pt-20 pl-8">
         <div className="mb-8">
           <h1 className="text-white font-bold text-[2rem] mb-5">Featured Playlists</h1>
-          <div className="flex overflow-x-scroll scrollbar-hide space-x-1 md:space-x-4 after:mr-8">
+          <div className="flex overflow-x-scroll scrollbar-hide md:scrollbar-default space-x-1 md:space-x-4 after:mr-8">
             {playlists.map((playlist, i) => (
               <PlaylistCover 
                 key={i}
@@ -44,7 +44,7 @@ function HomePage() {
         </div>
         <div className="mb-8">
           <h1 className="text-white font-bold text-[2rem] mb-5">New Releases</h1>
-          <div className="flex overflow-x-scroll scrollbar-hide space-x-1 md:space-x-4 after:mr-8">
+          <div className="flex overflow-x-scroll scrollbar-hide md:scrollbar-default space-x-1 md:space-x-4 after:mr-8">
             {newReleases.map((album, i) => (
               <AlbumCover 
                 key={i}
